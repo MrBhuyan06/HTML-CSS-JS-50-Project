@@ -30,6 +30,11 @@ function update() {
   circles.forEach((circle, indx) => {
     if (indx < currentActive) {
       circle.classList.add("active");
+      if (circle.id === "step-1") {
+        document.querySelector(".box").style.display = "block";
+      } else {
+        document.querySelector(".box").style.display = "none";
+      }
     } else {
       circle.classList.remove("active");
     }
