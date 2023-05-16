@@ -81,7 +81,7 @@ li {
   transform: translateY(7px) rotate(45deg);
 }
 .container .hamburger.open :nth-child(2) {
-  opacity: 0;
+  width: 0;
 }
 .container .hamburger.open :nth-child(3) {
   transform: translatey(-7px) rotate(-45deg);
