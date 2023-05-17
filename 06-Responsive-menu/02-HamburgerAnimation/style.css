@@ -72,21 +72,21 @@
 
 /* second figure */
 .menu2 .menu-div2 .bar2:nth-child(1) {
-  width: 45%;
+  width: 50%;
   transform: translatex(-50%);
   transform-origin: top right;
 }
 .menu2 .menu-div2 .bar2:nth-child(3) {
-  width: 45%;
+  width: 50%;
   transform: translatex(50%);
   transform-origin: bottom left;
 }
 
 .menu2 .menu-div2.open .bar2:nth-child(1) {
-  transform: translate(0, 0) rotate(-45deg);
+  transform: translate(0, -5px) rotate(-45deg);
 }
 .menu2 .menu-div2.open .bar2:nth-child(3) {
-  transform: translate(0, 0) rotate(-45deg);
+  transform: translate(-10px, 5px) rotate(-45deg);
 }
 .menu2 .menu-div2.open .bar2:nth-child(2) {
   transform: translate(0, 0) rotate(45deg);
