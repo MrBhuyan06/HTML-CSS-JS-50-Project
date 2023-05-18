@@ -18,3 +18,10 @@ function scrolling() {
     }
   });
 }
+
+console.log(a);
+var a = () => {
+  console.log("hello");
+};
+
+a();
