@@ -6,8 +6,8 @@ const submit = document.getElementById("sub-btn");
 const todoBody = document.getElementById("todo-body");
 
 //function to printTodo
-console.log(todoList);
-if (todoList.length == 0) {
+
+if (todoBody.innerHTML === "") {
   const html =
     ' <p class="bg-red-200 text-center p-2 rounded-md font-bold">No data</p>';
 
@@ -30,7 +30,7 @@ function printTodo() {
         <button id="edit-btn" class="bg-blue-400 px-3 py-1 rounded-md">
           EDIT
         </button>
-        <button id="del-btn-${todo.id}" class="bg-red-400 px-3 py-1 rounded-md del-btn">
+        <button id="del-btn" onclick="deleteTodoItem(${todo.id})" class="bg-red-400 px-3 py-1 rounded-md del-btn">
           DEL
         </button>
       </div>
@@ -38,6 +38,13 @@ function printTodo() {
     );
   });
   todoBody.innerHTML = renderEle.join("");
+  console.log(todoBody.innerHTML);
+  if (todoBody.innerHTML === "") {
+    const html =
+      ' <p class="bg-red-200 text-center p-2 rounded-md font-bold">No data</p>';
+
+    todoBody.innerHTML = html;
+  }
   //   console.log(renderELe);
 }
 
@@ -53,32 +60,13 @@ submit.addEventListener("click", () => {
     console.log(todoList);
     //printTodo
     printTodo();
-    // console.log(todoBody);
-    addDeleteEventListeners();
-    // const delBtn = document.querySelectorAll("#del-btn");
-    // console.log(delBtn);
-    // delBtn.addEventListener("click", (e) => {
-    //   console.log("what happend");
-    // });
   }
 });
 
-function addDeleteEventListeners() {
-  const delButton = document.querySelectorAll(".del-btn");
-  delButton.forEach((btn) => {
-    const id = btn.id.split("-")[2];
-    btn.addEventListener("click", () => {
-      deleteTodoItem(id);
-    });
-  });
-}
-//delete the particular todo
+// //delete the particular todo
 function deleteTodoItem(id) {
   todoList = todoList.filter((todo) => {
     return todo.id != id;
   });
   printTodo();
-  addDeleteEventListeners();
 }
-//initial setUp
-addDeleteEventListeners();
