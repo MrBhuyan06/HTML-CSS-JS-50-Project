@@ -2,6 +2,7 @@ const main = document.getElementById("main-container");
 const error = document.getElementById("error");
 const todoValue = document.getElementById("todoname");
 let todoList = [];
+let editList = "";
 const submit = document.getElementById("sub-btn");
 const todoBody = document.getElementById("todo-body");
 
@@ -22,12 +23,12 @@ function printTodo() {
         <div id="${todo.id}" class="relative flex gap-2 mb-4">
         <input
           type="text"
-          id=""
+          id="todo-input"
           name="name"
           value="${todo.text}"
           class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-0 px-2 leading-8 transition-colors duration-200 ease-in-out"
         />
-        <button id="edit-btn" class="bg-blue-400 px-3 py-1 rounded-md">
+        <button id="edit-btn" class="bg-blue-400 px-3 py-1 rounded-md"  onclick="editHandler(${todo.id})">
           EDIT
         </button>
         <button id="del-btn" onclick="deleteTodoItem(${todo.id})" class="bg-red-400 px-3 py-1 rounded-md del-btn">
@@ -53,13 +54,23 @@ submit.addEventListener("click", () => {
   if (!todoValue.value) {
     error.style.display = "block";
   } else {
-    error.style.display = "none";
-    let uuid = Math.trunc(Math.random() * 100 + 1);
-    console.log(uuid);
-    todoList.push({ id: uuid, text: todoValue.value });
-    console.log(todoList);
-    //printTodo
-    printTodo();
+    if (!editList) {
+      error.style.display = "none";
+      let uuid = Math.trunc(Math.random() * 100 + 1);
+      console.log(uuid);
+      todoList.push({ id: uuid, text: todoValue.value });
+      console.log(todoList);
+      //printTodo
+      printTodo();
+      todoValue.value = "";
+    } else {
+      todoList.map((todo) => {
+        if (todo.id == editList.id) {
+          editList.text = todo.text;
+        }
+      });
+      console.log("demo");
+    }
   }
 });
 
@@ -69,4 +80,16 @@ function deleteTodoItem(id) {
     return todo.id != id;
   });
   printTodo();
+}
+function editHandler(id) {
+  let editItem;
+  editItem = todoList.find((todo) => {
+    return todo.id == id;
+  });
+  editList = editItem;
+  console.log(editItem);
+  console.log(editList);
+
+  todoValue.value = editList?.text;
+  submit.innerText = "EDIT";
 }
